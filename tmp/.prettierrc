@@ -20,7 +20,7 @@
   "rangeEnd": 2147483647,
   "requirePragma": false,
   "insertPragma": false,
-  "overrides": [ 
+  "overrides": [
     {
       "files": "*.json",
       "options": {
@@ -28,4 +28,5 @@
       }
     }
   ],
+  "plugins": ["prettier-plugin-tailwindcss"]
 }
