@@ -6,7 +6,7 @@ import getSession from '@/lib/session';
 async function getUser() {
   const session = await getSession();
   if (session.id) {
-    const user = await db.user.findUnique({
+    const user = await db.c3User.findUnique({
       where: {
         id: session.id,
       },

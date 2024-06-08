@@ -8,7 +8,7 @@ import db from '@/lib/db';
 import getSession from '@/lib/session';
 
 const checkEmailExists = async (email: string) => {
-  const user = await db.user.findUnique({
+  const user = await db.c3User.findUnique({
     select: {
       id: true,
     },
@@ -46,7 +46,7 @@ export async function logIn(prevState: any, formData: FormData) {
   if (!result.success) {
     return result.error.flatten();
   } else {
-    const user = await db.user.findUnique({
+    const user = await db.c3User.findUnique({
       select: {
         id: true,
         password: true,

@@ -33,7 +33,7 @@ const formSchema = z
       .refine(checkUsername, 'No potatoes allowed!'),
   })
   .superRefine(async ({ username }, ctx) => {
-    const user = await db.user.findUnique({
+    const user = await db.c3User.findUnique({
       select: {
         id: true,
       },
@@ -52,7 +52,7 @@ const formSchema = z
     }
   })
   .superRefine(async ({ email }, ctx) => {
-    const user = await db.user.findUnique({
+    const user = await db.c3User.findUnique({
       select: {
         id: true,
       },
@@ -88,7 +88,7 @@ export async function createAccount(prevState: any, formData: FormData) {
     return result.error.flatten();
   } else {
     const hashedPassword = await bcrypt.hash(result.data.password, 12);
-    const user = await db.user.create({
+    const user = await db.c3User.create({
       data: {
         email: result.data.email,
         password: hashedPassword,

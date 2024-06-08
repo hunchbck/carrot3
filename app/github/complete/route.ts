@@ -36,7 +36,7 @@ export async function GET(request: NextRequest) {
     },
   });
   const { avatar_url, id, login } = await userProfileResponse.json();
-  const user = await db.user.findUnique({
+  const user = await db.c3User.findUnique({
     select: {
       id: true,
     },
@@ -50,7 +50,7 @@ export async function GET(request: NextRequest) {
     await session.save();
     return redirect('/profile');
   }
-  const newUser = await db.user.create({
+  const newUser = await db.c3User.create({
     data: {
       avatar: avatar_url,
       github_id: id + '',
