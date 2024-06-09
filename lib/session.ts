@@ -25,6 +25,9 @@ const sessionOptions: SessionOptions = {
   },
   password: process.env.COOKIE_PASSWORD as string,
 };
+
+// console.log('Session password:', process.env.COOKIE_PASSWORD);
+
 if (!sessionOptions.password) {
   throw new Error('COOKIE_PASSWORD 환경 변수가 설정되지 않았습니다.');
 }
