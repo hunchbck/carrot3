@@ -18,7 +18,7 @@ const publicOnlyUrls: Routes = {
 };
 
 export async function middleware(request: NextRequest) {
-  const session = await getSession();
+  const session = await getSession(request);
   const exists = publicOnlyUrls[request.nextUrl.pathname];
   if (!session.id) {
     if (!exists) {
@@ -29,6 +29,7 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL('/products', request.url));
     }
   }
+  return NextResponse.next();
 }
 export const config = {
   matcher: [
