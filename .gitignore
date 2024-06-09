@@ -44,3 +44,5 @@ env.txt
 
 .env.development.local
 .vercel
+
+.vercel

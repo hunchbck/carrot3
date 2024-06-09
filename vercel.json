@@ -1,5 +1,0 @@
-{
-  "env": {
-    "COOKIE_PASSWORD": "@your-vercel-env-variable-name"
-  }
-}
