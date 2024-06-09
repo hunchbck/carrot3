@@ -9,16 +9,22 @@ datasource db {
 }
 
 model C3User {
-  id         Int        @id @default(autoincrement())
-  username   String     @unique
-  email      String?    @unique
-  password   String?
-  phone      String?    @unique
-  github_id  String?    @unique
-  avatar     String?
-  created_at DateTime   @default(now())
-  updated_at DateTime   @updatedAt
+  id              Int         @id @default(autoincrement())
+  username        String      @unique
+  password        String?
+  email           String?     @unique
+  emailCertified  Boolean     @default(false)
+  name            String?
+  mobile          String?     @unique
+  mobileCertified Boolean     @default(false)
+  avatar          String?
+  socialOnly      Boolean     @default(false)
+  socialInfo      String?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
   SMSToken   C3SMSToken[]
+  chat_rooms      C3ChatRoom[]
+  messages        C3Message[]
 }
 
 model C3SMSToken {
@@ -28,4 +34,21 @@ model C3SMSToken {
   updated_at DateTime @updatedAt
   user       C3User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     Int
+}
+model C3ChatRoom {
+  id          String    @id @default(cuid())
+  users       C3User[]
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+  messages    C3Message[]
+}
+model C3Message {
+  id          Int       @id @default(autoincrement())
+  payload     String
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+  room        C3ChatRoom  @relation(fields: [chatRoomId], references: [id])
+  user        C3User      @relation(fields: [userId], references: [id])
+  chatRoomId  String
+  userId      Int
 }

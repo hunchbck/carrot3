@@ -50,6 +50,22 @@ export default function CreateAccount() {
           placeholder="Confirm Password"
           type="password"
         />
+        <Input
+          required
+          errors={state?.fieldErrors.name}
+          maxLength={20}
+          minLength={4}
+          name="name"
+          placeholder="Name"
+          type="text"
+        />
+        <Input
+          required
+          errors={state?.fieldErrors.mobile}
+          name="mobile"
+          placeholder="Mobile"
+          type="text"
+        />
         <Button text="Create account" />
       </form>
       <SocialLogin />

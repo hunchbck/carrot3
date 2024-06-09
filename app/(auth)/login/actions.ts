@@ -5,7 +5,7 @@ import { z } from 'zod';
 
 import { PASSWORD_MIN_LENGTH } from '@/lib/constants';
 import db from '@/lib/db';
-import getSession from '@/lib/session';
+import login from '@/lib/login';
 
 const checkEmailExists = async (email: string) => {
   const user = await db.c3User.findUnique({
@@ -16,11 +16,6 @@ const checkEmailExists = async (email: string) => {
       email,
     },
   });
-  // if(user){
-  //   return true
-  // } else {
-  //   return false
-  // }
   return Boolean(user);
 };
 const formSchema = z.object({
@@ -34,7 +29,6 @@ const formSchema = z.object({
       required_error: 'Password is required',
     })
     .min(PASSWORD_MIN_LENGTH),
-  // .regex(PASSWORD_REGEX, PASSWORD_REGEX_ERROR),
 });
 
 export async function logIn(prevState: any, formData: FormData) {
@@ -60,9 +54,7 @@ export async function logIn(prevState: any, formData: FormData) {
       user!.password ?? 'xxxx',
     );
     if (ok) {
-      const session = await getSession();
-      session.id = user!.id;
-      await session.save();
+      await login(user.id);
       redirect('/profile');
     } else {
       return {
