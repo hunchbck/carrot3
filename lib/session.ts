@@ -12,10 +12,10 @@
 //   });
 // }
 import { getIronSession, SessionOptions } from 'iron-session';
+import { cookies } from 'next/headers';
 
 interface SessionContent {
   id?: number;
-  save(): unknown;
 }
 
 const sessionOptions: SessionOptions = {
@@ -26,6 +26,6 @@ const sessionOptions: SessionOptions = {
   password: process.env.COOKIE_PASSWORD as string,
 };
 
-export default async function getSession({ cookies }): Promise<SessionContent> {
-  return getIronSession<SessionContent>(cookies, sessionOptions);
+export default async function getSession() {
+  return getIronSession<SessionContent>(cookies(), sessionOptions);
 }
