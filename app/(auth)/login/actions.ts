@@ -54,7 +54,7 @@ export async function logIn(prevState: any, formData: FormData) {
       user!.password ?? 'xxxx',
     );
     if (ok) {
-      await login(user.id);
+      await login(user!.id);
       redirect('/profile');
     } else {
       return {
