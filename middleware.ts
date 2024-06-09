@@ -11,6 +11,8 @@ const publicOnlyUrls: Routes = {
   '/create-account': true,
   '/github/complete': true,
   '/github/start': true,
+  '/kakao/complete': true,
+  '/kakao/start': true,
   '/login': true,
   '/sms': true,
 };
@@ -30,5 +32,7 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
+  matcher: [
+    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+  ],
 };
