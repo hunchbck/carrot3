@@ -11,14 +11,14 @@
 //     password: process.env.COOKIE_PASSWORD!,
 //   });
 // }
-import { getIronSession } from 'iron-session';
-import { NextRequest } from 'next/server';
+import { getIronSession, SessionOptions } from 'iron-session';
 
 interface SessionContent {
   id?: number;
+  save(): unknown;
 }
 
-const sessionOptions = {
+const sessionOptions: SessionOptions = {
   cookieName: 'delicious-karrot',
   cookieOptions: {
     secure: process.env.NODE_ENV === 'production',
@@ -26,6 +26,6 @@ const sessionOptions = {
   password: process.env.COOKIE_PASSWORD as string,
 };
 
-export default async function getSession(request: NextRequest) {
-  return getIronSession<SessionContent>(request.cookies, sessionOptions);
+export default async function getSession({ cookies }): Promise<SessionContent> {
+  return getIronSession<SessionContent>(cookies, sessionOptions);
 }

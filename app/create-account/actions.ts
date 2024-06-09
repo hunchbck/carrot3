@@ -1,5 +1,6 @@
 'use server';
 import bcrypt from 'bcrypt';
+import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
@@ -98,10 +99,10 @@ export async function createAccount(prevState: any, formData: FormData) {
         id: true,
       },
     });
-    const session = await getSession();
+    const cookieHeader = cookies();
+    const session = await getSession({ cookies: cookieHeader });
     session.id = user.id;
     await session.save();
-    //redirect("/profile");
-    redirect('/home');
+    redirect('/profile');
   }
 }
