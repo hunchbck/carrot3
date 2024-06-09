@@ -1,13 +1,11 @@
-import { getIronSession, SessionOptions } from 'iron-session';
 import { NextRequest, NextResponse } from 'next/server';
 
-interface SessionContent {
-  id?: number;
-}
+import getSession from './lib/session';
 
 interface Routes {
   [key: string]: boolean;
 }
+
 const publicOnlyUrls: Routes = {
   '/': true,
   '/create-account': true,
@@ -18,22 +16,10 @@ const publicOnlyUrls: Routes = {
   '/login': true,
   '/sms': true,
 };
-const sessionOptions: SessionOptions = {
-  cookieName: 'delicious-karrot',
-  cookieOptions: {
-    secure: process.env.NODE_ENV === 'production',
-  },
-  password: process.env.COOKIE_PASSWORD as string,
-};
 
-if (!sessionOptions.password) {
-  throw new Error('COOKIE_PASSWORD 환경 변수가 설정되지 않았습니다.');
-}
 export async function middleware(request: NextRequest) {
-  const cookies = request.cookies;
-  const session = await getIronSession<SessionContent>(cookies, sessionOptions);
+  const session = await getSession();
   const exists = publicOnlyUrls[request.nextUrl.pathname];
-
   if (!session.id) {
     if (!exists) {
       return NextResponse.redirect(new URL('/', request.url));
