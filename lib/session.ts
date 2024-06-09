@@ -25,7 +25,9 @@ const sessionOptions: SessionOptions = {
   },
   password: process.env.COOKIE_PASSWORD as string,
 };
-
+if (!sessionOptions.password) {
+  throw new Error('COOKIE_PASSWORD 환경 변수가 설정되지 않았습니다.');
+}
 export default async function getSession() {
   return getIronSession<SessionContent>(cookies(), sessionOptions);
 }
