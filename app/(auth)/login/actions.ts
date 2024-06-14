@@ -33,8 +33,8 @@ const formSchema = z.object({
 
 export async function logIn(prevState: any, formData: FormData) {
   const data = {
-    email: formData.get('email'),
-    password: formData.get('password'),
+    email: formData.get('email') as string,
+    password: formData.get('password') as string,
   };
   const result = await formSchema.spa(data);
   if (!result.success) {
@@ -49,20 +49,19 @@ export async function logIn(prevState: any, formData: FormData) {
         email: result.data.email,
       },
     });
-    const ok = await bcrypt.compare(
-      result.data.password,
-      user!.password ?? 'xxxx',
-    );
-    if (ok) {
-      await login(user!.id);
-      redirect('/profile');
-    } else {
-      return {
-        fieldErrors: {
-          email: [],
-          password: ['Wrong password.'],
-        },
-      };
+    let ok;
+    if (user) {
+      ok = await bcrypt.compare(result.data.password, user.password ?? 'xxxx');
+      if (ok) {
+        await login(user.id);
+        redirect('/profile');
+      }
     }
+    return {
+      fieldErrors: {
+        email: [],
+        password: ['Wrong password.'],
+      },
+    };
   }
 }

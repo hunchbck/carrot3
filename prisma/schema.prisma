@@ -22,8 +22,7 @@ model C3User {
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
   SMSToken   C3SMSToken[]
-  chat_rooms      C3ChatRoom[]
-  messages        C3Message[]
+  Product    C3Product[]
 }
 
 model C3SMSToken {
@@ -34,20 +33,16 @@ model C3SMSToken {
   user       C3User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     Int
 }
-model C3ChatRoom {
-  id          String    @id @default(cuid())
-  users       C3User[]
-  created_at  DateTime  @default(now())
-  updated_at  DateTime  @updatedAt
-  messages    C3Message[]
-}
-model C3Message {
-  id          Int       @id @default(autoincrement())
-  payload     String
-  created_at  DateTime  @default(now())
-  updated_at  DateTime  @updatedAt
-  room        C3ChatRoom  @relation(fields: [chatRoomId], references: [id])
-  user        C3User      @relation(fields: [userId], references: [id])
-  chatRoomId  String
-  userId      Int
+
+model C3Product {
+  id          Int    @id @default(autoincrement())
+  title       String
+  price       Float
+  photo       String
+  description String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  user       C3User     @relation(fields: [userId], references: [id])
+  userId     Int
 }

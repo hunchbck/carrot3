@@ -7,14 +7,13 @@ import { PASSWORD_MIN_LENGTH } from '@/lib/constants';
 import db from '@/lib/db';
 import login from '@/lib/login';
 
-const checkUsername = (username: string): boolean =>
-  !/^(Github|Kakao|Mobile)/i.test(username);
+const checkUsername = (username: string): boolean => !/^(Github|Kakao|Mobile)/i.test(username);
 const checkPasswords = ({
   confirm_password,
   password,
 }: {
-  confirm_password: string;
-  password: string;
+  confirm_password: string,
+  password: string,
 }) => password === confirm_password;
 
 const formSchema = z
@@ -35,10 +34,7 @@ const formSchema = z
       .trim()
       .toLowerCase()
       // .transform((username) => `🔥 ${username} 🔥`)
-      .refine(
-        checkUsername,
-        "'Github', 'Kakao', 'Mobile'은 사용하실 수 없습니다.",
-      ),
+      .refine(checkUsername, "'Github', 'Kakao', 'Mobile'은 사용하실 수 없습니다."),
   })
   .superRefine(async ({ confirm_password, password }, ctx) => {
     if (!checkPasswords({ confirm_password, password })) {

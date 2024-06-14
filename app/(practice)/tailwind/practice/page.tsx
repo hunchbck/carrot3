@@ -4,12 +4,8 @@ export default function Tailwind() {
       <div className="w-full max-w-screen-sm rounded-3xl bg-white p-5 shadow-lg dark:bg-gray-600">
         <div className="flex items-center justify-between">
           <div className="flex flex-col">
-            <span className="-mb-1 font-semibold text-gray-600 dark:text-gray-300">
-              In transit
-            </span>
-            <span className="text-4xl font-semibold dark:text-white">
-              Coolblue
-            </span>
+            <span className="-mb-1 font-semibold text-gray-600 dark:text-gray-300">In transit</span>
+            <span className="text-4xl font-semibold dark:text-white">Coolblue</span>
           </div>
           <div className="size-12 rounded-full bg-orange-400" />
         </div>

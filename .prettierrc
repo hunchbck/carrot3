@@ -1,11 +1,11 @@
 {
   "arrowParens": "avoid",
   "bracketSpacing": true,
-  "endOfLine": "auto",
+  "endOfLine": "lf",
   "htmlWhitespaceSensitivity": "css",
   "jsxBracketSameLine": false,
   "jsxSingleQuote": false,
-  "printWidth": 80,
+  "printWidth": 100,
   "proseWrap": "preserve",
   "quoteProps": "as-needed",
   "semi": true,
@@ -14,19 +14,6 @@
   "trailingComma": "all",
   "useTabs": false,
   "vueIndentScriptAndStyle": true,
-  "parser": "",
-  "filepath": "",
-  "rangeStart": 0,
-  "rangeEnd": 2147483647,
-  "requirePragma": false,
-  "insertPragma": false,
-  "overrides": [
-    {
-      "files": "*.json",
-      "options": {
-        "printWidth": 200
-      }
-    }
-  ],
+  "parser": "json",
   "plugins": ["prettier-plugin-tailwindcss"]
 }

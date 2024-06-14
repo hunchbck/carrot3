@@ -17,18 +17,8 @@ const IconButton: React.FC<ButtonProps> = ({ children, icon }) => {
 };
 
 const SomeIcon = () => (
-  <svg
-    className="h-4 w-4"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <path
-      d="M5 13l4 4L19 7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-    />
+  <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
   </svg>
 );
 
@@ -53,10 +43,7 @@ export default function CreateAccount() {
       </form>
       <div className="h-px w-full bg-neutral-500" />
       <div>
-        <Link
-          className="primary-btn flex h-10 items-center justify-center gap-2"
-          href="/sms"
-        >
+        <Link className="primary-btn flex h-10 items-center justify-center gap-2" href="/sms">
           <span>
             <ChatBubbleOvalLeftEllipsisIcon className="h-6 w-6" />
           </span>
