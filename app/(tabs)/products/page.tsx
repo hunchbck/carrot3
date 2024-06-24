@@ -1,5 +1,7 @@
 // import ListProduct from '@/components/list-product';
+import { PlusIcon } from '@heroicons/react/24/solid';
 import { Prisma } from '@prisma/client';
+import Link from 'next/link';
 
 import ProductList from '@/components/product-list';
 import db from '@/lib/db';
@@ -35,6 +37,12 @@ export default async function Products() {
     // </div>
     <div>
       <ProductList initialProducts={initialProducts} />
+      <Link
+        className="fixed bottom-24 right-8 flex size-16 items-center justify-center rounded-full bg-orange-500 text-white transition-colors hover:bg-orange-400"
+        href="/products/add"
+      >
+        <PlusIcon className="size-10" />
+      </Link>
     </div>
   );
 }

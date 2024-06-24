@@ -6,11 +6,7 @@ interface InputProps {
 }
 
 const _Input = (
-  {
-    errors = [],
-    name,
-    ...rest
-  }: InputProps & InputHTMLAttributes<HTMLInputElement>,
+  { errors = [], name, ...rest }: InputProps & InputHTMLAttributes<HTMLInputElement>,
   ref: ForwardedRef<HTMLInputElement>,
 ) => {
   return (

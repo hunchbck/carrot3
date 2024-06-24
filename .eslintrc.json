@@ -28,7 +28,16 @@
       "jsx": true
     }
   },
-  "plugins": ["simple-import-sort", "import", "sort-keys-fix", "sort-destructure-keys", "typescript-sort-keys", "react", "prettier"],
+  "plugins": [
+    "simple-import-sort",
+    "import",
+    "sort-keys-fix",
+    "sort-destructure-keys",
+    "typescript-sort-keys",
+    "react",
+    "@typescript-eslint",
+    "prettier"
+  ],
   "rules": {
     "prettier/prettier": [
       "error",
@@ -48,7 +57,7 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/ban-ts-comment": "off",
-    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/naming-convention": [
       "error",
       {

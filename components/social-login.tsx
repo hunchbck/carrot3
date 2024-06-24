@@ -29,11 +29,7 @@ export default function SocialLogin() {
           className="primary-btn flex h-10 items-center justify-center gap-2"
           href="/kakao/start"
         >
-          <svg
-            className="size-6"
-            viewBox="0 0 256 256"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg className="size-6" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M256 236c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20V20C0 8.954 8.954 0 20 0h216c11.046 0 20 8.954 20 20v216z"
               fill="#FFE812"
@@ -46,10 +42,7 @@ export default function SocialLogin() {
           </svg>
           <span>Continue with Kakao</span>
         </Link>
-        <Link
-          className="primary-btn flex h-10 items-center justify-center gap-2"
-          href="/sms"
-        >
+        <Link className="primary-btn flex h-10 items-center justify-center gap-2" href="/sms">
           <ChatBubbleOvalLeftEllipsisIcon className="size-6" />
           <span>Continue with SMS</span>
         </Link>

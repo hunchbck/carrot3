@@ -21,8 +21,8 @@ model C3User {
   socialInfo      String?
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
-  SMSToken   C3SMSToken[]
-  Product    C3Product[]
+  SMSToken        C3SMSToken[]
+  Product          C3Product[]
 }
 
 model C3SMSToken {
@@ -30,7 +30,7 @@ model C3SMSToken {
   token      String   @unique
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-  user       C3User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user       C3User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     Int
 }
 
@@ -38,11 +38,11 @@ model C3Product {
   id          Int    @id @default(autoincrement())
   title       String
   price       Float
-  photo       String
+  photo       String  @default("")  // 기본값 설정
   description String
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-  user       C3User     @relation(fields: [userId], references: [id])
+  user       C3User   @relation(fields: [userId], references: [id])
   userId     Int
 }
