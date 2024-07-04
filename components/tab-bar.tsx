@@ -20,9 +20,9 @@ import { usePathname } from 'next/navigation';
 export default function TabBar() {
   const pathname = usePathname();
   return (
-    <div className="fixed bottom-0 mx-auto grid w-full max-w-screen-md grid-cols-5 border-t border-neutral-600 bg-neutral-800 px-5 py-3 *:text-white">
-      <Link className="flex flex-col items-center gap-px" href="/products">
-        {pathname === '/products' ? (
+    <div className="fixed bottom-0 mx-auto grid w-full max-w-screen-sm grid-cols-5 border-t border-neutral-600 bg-neutral-800 px-5 py-3 *:text-white">
+      <Link className="flex flex-col items-center gap-px" href="/home">
+        {pathname === '/home' ? (
           <SolidHomeIcon className="h-7 w-7" />
         ) : (
           <OutlineHomeIcon className="h-7 w-7" />

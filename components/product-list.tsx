@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import { getMoreProducts } from '@/app/(tabs)/products/actions';
-import { InitialProducts } from '@/app/(tabs)/products/page';
+import { getMoreProducts } from '@/app/(tabs)/home/actions';
+import { InitialProducts } from '@/app/(tabs)/home/page';
 
 import ListProduct from './list-product';
 
@@ -13,9 +13,9 @@ interface ProductListProps {
 
 export default function ProductList({ initialProducts }: ProductListProps) {
   const [products, setProducts] = useState(initialProducts);
-  const [isLoading, setIsLoading] = useState(false);
+  //const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(0);
-  const [isLastPage, setIsLastPage] = useState(false);
+  //const [isLastPage, setIsLastPage] = useState(false);
   const trigger = useRef<HTMLSpanElement>(null);
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -23,15 +23,15 @@ export default function ProductList({ initialProducts }: ProductListProps) {
         const element = entries[0];
         if (element.isIntersecting && trigger.current) {
           observer.unobserve(trigger.current);
-          setIsLoading(true);
+          //setIsLoading(true);
           const newProducts = await getMoreProducts(page + 1);
           if (newProducts.length !== 0) {
             setProducts(prev => [...prev, ...newProducts]);
             setPage(prev => prev + 1);
           } else {
-            setIsLastPage(true);
+            //setIsLastPage(true);
           }
-          setIsLoading(false);
+          //setIsLoading(false);
         }
       },
       {
@@ -52,14 +52,14 @@ export default function ProductList({ initialProducts }: ProductListProps) {
       {products.map(product => (
         <ListProduct key={product.id} {...product} />
       ))}
-      {!isLastPage ? (
+      {/* {!isLastPage ? (
         <span
           className="mx-auto w-fit rounded-md bg-orange-500 px-3 py-2 text-sm font-semibold hover:opacity-90 active:scale-95"
           ref={trigger}
         >
           {isLoading ? '로딩 중' : 'Load more'}
         </span>
-      ) : null}
+      ) : null} */}
     </div>
   );
 }
