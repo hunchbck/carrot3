@@ -103,12 +103,25 @@ export default async function ProductDetail({ params }: { params: { id: string }
       </div>
       <div className="fixed bottom-0 flex w-full max-w-screen-sm items-center justify-between bg-neutral-800 p-5 pb-10">
         <span className="text-xl font-semibold">{formatToWon(product.price)}원</span>
+        <button className="rounded-md bg-red-500 px-5 py-2.5 font-semibold text-white">
+          <Link href={'/home'}>Home</Link>
+        </button>
         {isOwner ? (
           <form action={revalidate}>
             <button className="rounded-md bg-red-500 px-5 py-2.5 font-semibold text-white">
               Revalidate title cache
             </button>
           </form>
+        ) : null}
+        {isOwner ? (
+          <button className="rounded-md bg-red-500 px-5 py-2.5 font-semibold text-white">
+            <Link href={`/products/${id}/edit`}>Edit product</Link>
+          </button>
+        ) : null}
+        {isOwner ? (
+          <button className="rounded-md bg-red-500 px-5 py-2.5 font-semibold text-white">
+            <Link href={`/products/${id}/delete`}>Delete product</Link>
+          </button>
         ) : null}
         <Link className="rounded-md bg-orange-500 px-5 py-2.5 font-semibold text-white" href={``}>
           채팅하기

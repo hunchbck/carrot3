@@ -56,7 +56,7 @@ export default async function Products() {
       </form>
       <Link
         className="fixed bottom-24 right-8 flex size-16 items-center justify-center rounded-full bg-orange-500 text-white transition-colors hover:bg-orange-400"
-        href="/products/add"
+        href="/add-product"
       >
         <PlusIcon className="size-10" />
       </Link>
